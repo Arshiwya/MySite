@@ -3,7 +3,6 @@ from django.views.generic import ListView , TemplateView
 from .models import Picture
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -24,7 +23,10 @@ class Home (TemplateView):
 
 
 
-class MyPicture (ListView):
+class MyPicture (LoginRequiredMixin,ListView):
+
+    LOGIN_REDIRECT_URL = 'website:pics'
+
 
 
     model = Picture

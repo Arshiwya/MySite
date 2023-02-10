@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-+asazskkbhntgpv*an%5ktv0p78@^k6414e0&^k!8z87k#f$1=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['arshiya.iran.liara.run' , '127.0.0.1']
 
+LOGIN_URL = '/admin/login/'
 
 
 
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'MySite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'data/db.sqlite3',
     }
 }
 

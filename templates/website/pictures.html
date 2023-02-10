@@ -71,31 +71,74 @@
                     </div>
                     <!-- portfolio -->
                 </div>
-<h1>   </h1>
 
 
- <ul class="pagination pagination-lg justify-content-center" style="margin:50px 0">
-     {% if page_obj.has_previous %}
-     <li class="page-item active"><a class="page-link" href="{% url 'website:pics' %}?page={{page_obj.previous_page_number}}" style="margin-right: 40px">Previous</a></li>
-     {% endif %}
-<li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li>
-    {% if page_obj.has_next %}
-     <li class="page-item active"><a class="page-link" href="{% url 'website:pics' %}?page={{page_obj.next_page_number}}" style="margin-left: 40px">Next</a></li>
+<ul class="pagination pagination-lg justify-content-center" style="margin:20px 0">
+
+
+
+    {% if page_obj.number == 1 %}
+
+
+
+  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+
+{% if page_obj.has_next %}
+  <li class="page-item"><a class="page-link" href="{% url 'website:pics' %}?page=2">2</a></li>
+    <li class="page-item active"><a class="page-link" href="{% url 'website:pics' %}?page=2">Next</a></li>
+
+
+
 {% endif %}
 
 
 
+
+
+
+{% else %}
+<li class="page-item active"><a class="page-link" href="{% url 'website:pics' %}?page={{page_obj.previous_page_number}}">Previous</a></li>
+  <li class="page-item"><a class="page-link" href="{% url 'website:pics' %}?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number}}</a></li>
+    <li class="page-item active"><a class="page-link" href="#">{{page_obj.number}}</a></li>
+
+
+    {% if page_obj.has_next %}
+
+
+
+  <li class="page-item"><a class="page-link" href="{% url 'website:pics' %}?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a></li>
+  <li class="page-item active"><a class="page-link" href="{% url 'website:pics' %}?page={{page_obj.next_page_number}}">Next</a></li>
+
+    {% endif %}
+
+
+
+
+
+
+
+
+
+    {% endif %}
+  
+
+
+<!--   <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item active"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+
+
+
+
 </ul>
+
+
+
 
 {% endblock %}
 
 
 
 
-<!--                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-<!--  <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-
-
-<!--  <li class="page-item active"><a class="page-link" href="#">2</a></li>-->
-<!--  <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--  <li class="page-item"><a class="page-link" href="#">{{page_obj.get_page}}</a></li>-->
