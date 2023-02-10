@@ -5,6 +5,17 @@
 
 
 {% block content %}
+    <header class="navbar-fixed-top">
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#experience">experience</a></li>
+                <li><a href="{% url 'website:pics' %}">pictures</a></li>
+                <li><a href="#contact">contact</a></li>
+
+            </ul>
+        </nav>
+    </header>
 
 
     <!-- about -->
@@ -80,6 +91,17 @@
       <a href="{% url 'website:pics' %}"><button class="button">my pictures</button></a>
   </div>
 </div>
+
+
+{% if not user.is_authenticated %}
+
+<div class="containerr">
+  <div class="centerr">
+      <a href="{% url 'accounts:sign_in' %}"><button class="button">Create Your Album</button></a>
+  </div>
+</div>
+
+{% endif %}
                 <!-- end portfolio div -->
             </div>
             <!-- end main container -->

@@ -6,6 +6,29 @@
 
 
 {% block content %}
+
+    <header class="navbar-fixed-top">
+        <nav>
+            <ul>
+                <li><a href="{% url 'website:home' %}">Home</a></li>
+                {% if user.is_superuser %}
+                <li><a href="/admin/">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'accounts:logout' %}">Log out</a></li>
+
+
+            </ul>
+        </nav>
+    </header>
+
+{% if user.get_full_name %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Hello {{user.get_full_name}} !</h1>
+  </div>
+</div>
+{% endif %}
+
 <div class="section" id="projects">
         <div class="container">
             <div class="col-md-12">

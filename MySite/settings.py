@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['arshiya.iran.liara.run' , '127.0.0.1']
 
 LOGIN_URL = '/admin/login/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'website:pics'
 
 
 
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
+    'accounts.apps.AccountsConfig',
+    'widget_tweaks',
 
 ]
 

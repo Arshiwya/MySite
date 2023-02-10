@@ -21,14 +21,8 @@ class Home (TemplateView):
 #     return render(request , 'website/sign.html')
 
 
-
-
 class MyPicture (LoginRequiredMixin,ListView):
-
-    LOGIN_REDIRECT_URL = 'website:pics'
-
-
-
+    login_url = 'accounts:login'
     model = Picture
     template_name = 'website/pictures.html'
     paginate_by = 3
