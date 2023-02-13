@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{picture.slug}}{% endblock %}
+
+{% block content %}
+
+<header class="navbar-fixed-top">
+        <nav>
+            <ul>
+                <li><a href="{% url 'website:home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <li><a href="/admin/">Admin</a></li>
+
+                {% endif %}
+                <li><a href="{% url 'accounts:logout' %}">Log out</a></li>
+                {% endif %}
+                <li><a href="{% url 'website:pics' user.username %}">My Profile</a></li>
+
+
+
+
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+
+
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Picture from <a href="{% url 'website:show_user_pics' pic_user.username %}">{{pic_user}}</a></h1>
+  </div>
+</div>
+
+<div class="section" id="projects">
+
+
+        <div class="container">
+            <div class="col-md-6">
+                <img src="{{picture.img.url}}" alt="image" class="img-responsive" style="border-radius: 30px"/>
+
+
+                </div>
+
+            <div class="col-md-6">
+
+        <div class="containerr">
+  <div class="centerr">
+      <a href="{% url 'website:pic_delete' picture.slug %}"><button type="button" class="btn btn-danger">Delete This Photo</button></a>
+  </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

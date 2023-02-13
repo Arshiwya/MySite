@@ -5,6 +5,7 @@ from .models import  Picture
 
 
 class PictureAdmin (admin.ModelAdmin):
+    list_display = ['author' , 'name' , 'slug' , 'created']
     prepopulated_fields = {'slug' : ('name' , ) }
 
 

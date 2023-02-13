@@ -10,8 +10,14 @@
             <ul>
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#experience">experience</a></li>
-                <li><a href="{% url 'website:pics' %}">pictures</a></li>
                 <li><a href="#contact">contact</a></li>
+
+                {% if user.is_anonymous %}
+                <li><a href="{% url 'accounts:login' %}">login</a></li>
+
+                {% else %}
+                <li><a href="{% url 'website:pics' user.username %}">pictures</a></li>
+                {% endif %}
 
             </ul>
         </nav>
@@ -85,12 +91,13 @@
 
     <!-- projects -->
 
-
+{% if user.username %}
 <div class="containerr">
   <div class="centerr">
-      <a href="{% url 'website:pics' %}"><button class="button">my pictures</button></a>
+      <a href="{% url 'website:pics' user.username %}"><button class="button">my pictures</button></a>
   </div>
 </div>
+{% endif %}
 
 
 {% if not user.is_authenticated %}

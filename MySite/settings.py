@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['arshiya.iran.liara.run' , '127.0.0.1']
 
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = 'accounts:login'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = 'website:pics'
 
@@ -110,6 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -141,3 +142,4 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# AUTH_USER_MODEL = 'accounts.User'

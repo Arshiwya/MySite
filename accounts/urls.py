@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import sign_user , logout_user
-from django.contrib.auth import views
+from .views import LoginviewMe
 from django.urls import path
 
 app_name = 'accounts'
@@ -12,9 +12,8 @@ urlpatterns = [
 
  path('sign/' , sign_user , name ='sign_in') ,
  path('logout/' , logout_user , name = 'logout' ),
+ path("login/", LoginviewMe.as_view(), name="login"),
 
-
- path("login/", views.LoginView.as_view(), name="login"),
 
 
 

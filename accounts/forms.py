@@ -9,9 +9,9 @@ class SignForm(ModelForm):
 
     username = forms.CharField(max_length=50)
     password = forms.CharField(max_length=50)
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField()
+    first_name = forms.CharField(max_length=50 , required=False)
+    last_name = forms.CharField(max_length=50 , required=False)
+    email = forms.EmailField(required=False)
 
 
 
@@ -23,6 +23,15 @@ class SignForm(ModelForm):
 
 
 
+class LoginForm(ModelForm):
+
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50)
+
+
+    class Meta :
+        model = User
+        fields = ['username' , 'password']
 
 
 

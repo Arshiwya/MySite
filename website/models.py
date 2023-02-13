@@ -1,5 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils.text import slugify
 
+import datetime
 
 
 # class User (models.Model):
@@ -27,6 +30,8 @@ from django.db import models
 
 
 class Picture (models.Model):
+
+    author = models.ForeignKey(User,null=True,blank=True ,on_delete=models.SET_NULL , related_name='pictures' )
     name = models.CharField(max_length=120)
     slug = models.SlugField(max_length=100  , unique=True)
     img = models.ImageField()
@@ -35,6 +40,13 @@ class Picture (models.Model):
     class Meta :
         verbose_name = 'picture'
         verbose_name_plural = 'pictures'
+        ordering = ['created']
+
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name+"-"+self.author.username)
+        super(Picture, self).save(*args, **kwargs)
+
 
 
     def __str__(self):

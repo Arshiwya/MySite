@@ -454,7 +454,7 @@ a.active {
 ==================================================*/
 
 #projects {
-    padding: 100px 0;
+    padding: 40px;
 }
 
 .portfolio .categories-grid span {
@@ -498,6 +498,9 @@ a.active {
     overflow: hidden;
     display: block;
     margin-bottom: 30px;
+    margin-top: 40px;
+
+
 }
 
 .portfolio_item .portfolio_item_hover {
@@ -585,8 +588,10 @@ a.active {
 }
 
 .portfolio_item img {
-width: 400px;
-    height: 400px;
+
+    width: 400px !important;
+    height: 300px !important;
+    border-radius: 30px;
 
 }
 
