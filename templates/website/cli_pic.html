@@ -2,8 +2,8 @@
 {% load static %}
 
 
-{% block title %}{{user.username}}{% endblock %}
-
+{% block title %}Profile | {{user.username}}{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/css/mycss.css' %}">
 
 {% block content %}
 
@@ -29,20 +29,32 @@
 
 
 
-{% if user.get_full_name %}
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hello {{user.username}} !</h1>
+
+<div class="row" >
+    <div class="col-6 jumbotron jumbotron-fluid" style="background-color:#ff9696 ">
+  <div class=" container">
+    <h1 class="display-4">Hello {{user.username}} !
+     {% if user.is_special %}
+        <h1>You are special user</h1>
+        {% endif %}
+
+    </h1>
   </div>
 </div>
-{% endif %}
+        <div class="col-6 jumbotron jumbotron-fluid"  style="background-color:#ff9696">
+<img src="{{user.prof_pic.url}}" style="border-radius: 50% ;" alt="Avatar">
+</div>
+
+</div>
+
+
 
 <div class="section" id="projects">
         <div class="container">
             <div class="col-md-12">
 
                 {% if page_obj.object_list %}
-                <h1 class="size-50">Your <br /> Pictures</h1>
+                <h1 class="size-50">Your <br /> Pictures <a href="{% url 'website:pic_create' %}"><span class="badge rounded-pill bg-danger">Add New Picture</span></a> </h1>
 
 
 
@@ -103,7 +115,7 @@
                         <!-- end portfolio_container -->
                     </div>
                     {% else %}
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron jumbotron-fluid" style="background-color:#ff9696">
   <div class="container">
     <h1 class="display-4">You do not have any picture in your album yet .!!!</h1>
   </div>

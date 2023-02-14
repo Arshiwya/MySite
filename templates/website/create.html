@@ -44,7 +44,7 @@
        <div class="form-row" >
 
          <div class="col-3" style="margin-top: 15px">
-      <label for="email">Email</label>
+      <label for="image">Image</label>
               {{form.img|add_class:"form-control"}}
     </div>
 
@@ -78,6 +78,8 @@
 
 
   <button type="submit" class="btn btn-primary" style="margin-top: 30px">Submit</button>
+    <a href="{% url 'website:pics' user.username %}"><button type="button"  class="btn btn-danger" style="margin-top: 30px">Cancel</button></a>
+
 </form>
 
 

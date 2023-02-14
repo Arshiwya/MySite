@@ -3,10 +3,10 @@ from .forms import SignForm , LoginForm
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from .models import User
 from django.contrib.auth.views import LoginView
-from django.contrib.auth import get_user_model
-User = get_user_model()
+
 
 from django.shortcuts import resolve_url
 def sign_user(request):
@@ -16,20 +16,98 @@ def sign_user(request):
 
 
         if form.is_valid():
+            if request.FILES:
+                username = request.POST["username"]
+                password = request.POST["password"]
+                if request.POST["last_name"]:
+
+                    last_name = request.POST["last_name"]
+
+                else:
+
+                    last_name = ''
+
+                if request.POST["first_name"]:
+
+                    first_name = request.POST["first_name"]
+
+                else:
+
+                    first_name = ''
+                if request.POST["email"]:
+
+                    email = request.POST["email"]
 
 
 
-            username = request.POST["username"]
-            password = request.POST["password"]
+                else:
+                    email = ''
 
-            user = User.objects.create_user(username = username  , password =password)
+                if request.FILES["prof_pic"]:
+
+                    prof_pic = request.FILES["prof_pic"]
+                else:
+                    prof_pic = 'profpics/defult.jpg'
+
+                user = User.objects.create_user(username=username,
+                                                password=password,
+                                                last_name=last_name,
+                                                first_name=first_name,
+                                                email=email,
+                                                prof_pic=prof_pic)
+
+                login(request, user)
+
+                return redirect(f'/pics/{username}')
+
+            else:
+                username = request.POST["username"]
+                password = request.POST["password"]
+                if request.POST["last_name"]:
+
+                    last_name = request.POST["last_name"]
+
+                else:
+
+                    last_name = ''
+
+                if request.POST["first_name"]:
+
+                    first_name = request.POST["first_name"]
+
+                else:
+
+                    first_name = ''
+                if request.POST["email"]:
+
+                    email = request.POST["email"]
 
 
-            login(request , user)
 
-            return redirect(f'/pics/{username}')
+                else:
+                    email = ''
+
+                user = User.objects.create_user(username=username,
+                                                password=password,
+                                                last_name=last_name,
+                                                first_name=first_name,
+                                                email=email
+                                                )
+
+                login(request, user)
+
+                return redirect(f'/pics/{username}')
+
+
+
+
+
+
+
         else:
-            return render(request, template_name='accounts/sign.html', context={"form": SignForm})
+            error = 'This Username Has Already Take. Try Again!!!'
+
+            return render(request, template_name='accounts/sign.html', context={"form": SignForm , "error" :error})
 
     else:
         return render(request , template_name='accounts/sign.html' ,context= {"form" : SignForm})

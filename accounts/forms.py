@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 
 from    django import forms
-from django.contrib.auth.models import  User
+from .models import  User
 
 
 
@@ -19,7 +19,7 @@ class SignForm(ModelForm):
 
 
         model = User
-        fields = ['username' , 'password' , 'first_name', 'email' , 'last_name']
+        fields = ['username' , 'password' , 'first_name', 'email' , 'last_name' , 'prof_pic']
 
 
 

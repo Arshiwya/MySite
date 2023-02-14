@@ -1,7 +1,8 @@
 from django.shortcuts import render , HttpResponse , redirect , get_object_or_404
 from django.views.generic import ListView , TemplateView , CreateView
 from .models import Picture
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from accounts.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .forms import CreatePictureForm
@@ -112,14 +113,14 @@ def picture_create(request):
     }
 
     if request.method == "GET" :
-        print("noooooo")
+
 
 
         return render(request ,'website/create.html' ,context=context )
 
     if request.method =="POST":
         if form.is_valid():
-            print("form is valid")
+
 
 
 
@@ -127,9 +128,9 @@ def picture_create(request):
             name = request.POST['name']
             img = request.FILES['img']
             slug = slugify(name+"-"+user.username)
-            print(slug)
+
             if  Picture.objects.filter(slug = slug).exists():
-                print("exisssssssssssssssssssttttttttttttttttttttttttttttttttttttt")
+
                 error = 'A picture with the same name has already exist . Please Try Agine !'
                 context = {
                         "form": form ,
@@ -141,7 +142,7 @@ def picture_create(request):
 
 
             else:
-                print("createingggggggggggggggggggggggggggggggggggggggggggggg")
+
 
                 user = request.user
                 Picture.objects.create(author=user, name=name, img=img)
@@ -150,7 +151,7 @@ def picture_create(request):
 
 
         else:
-            print("noo")
+
             return render(request, 'website/create.html', context=context)
 
 

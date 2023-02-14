@@ -2,6 +2,8 @@
 
 {% block title %}{{picture.slug}}{% endblock %}
 
+
+
 {% block content %}
 
 <header class="navbar-fixed-top">
@@ -49,11 +51,13 @@
 
             <div class="col-md-6">
 
-        <div class="containerr">
+{% if user == pic_user %}
+                        <div class="containerr">
   <div class="centerr">
       <a href="{% url 'website:pic_delete' picture.slug %}"><button type="button" class="btn btn-danger">Delete This Photo</button></a>
   </div>
 </div>
+{% endif %}
 
             </div>
         </div>

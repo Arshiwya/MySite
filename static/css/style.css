@@ -287,19 +287,22 @@ a.active {
 ==================================================*/
 
 #home {
-    background: url(../img/IMG_20210906_230122_4020.jpg);
+            background: url(../img/IMG_20210906_230122_4020.jpg);
     background-size: cover;
     height: 100vh;
+
 }
 
 .table-cell {
     display: table-cell;
     vertical-align: middle;
+
 }
 
 .disply-table {
     display: table;
     height: 100vh;
+
 }
 
 
