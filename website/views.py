@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .forms import CreatePictureForm
 from django.utils.text import slugify
-
+from utiles.cleanfiles import delete_file
+from MySite.settings import BASE_DIR
 # Create your views here.
 
 
@@ -68,6 +69,7 @@ def show_user_picture(request , username):
 def picture_detail(request , slug):
 
     picture = Picture.objects.get(slug = slug)
+
     user = picture.author
     context = {
         'picture' : picture,
@@ -81,12 +83,14 @@ def picture_detail(request , slug):
 @login_required()
 def delete_pic (request , slug):
 
-
     picture = Picture.objects.get(slug = slug)
     user = picture.author
+    url = str((str(BASE_DIR)) + picture.img.url)
     real_user = request.user
 
     if user == real_user:
+
+        delete_file(url)
         picture.delete()
 
         return redirect(f'/pics/{user.username}')

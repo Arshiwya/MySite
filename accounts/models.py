@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class User(AbstractUser):
 
-    prof_pic = models.ImageField(null=True ,upload_to="profpics/" , blank=True ,default='profpics/defult.jpg')
+    prof_pic = models.ImageField(null=True ,upload_to="profpics/" , blank=True ,default='../static/img/defult_prof.jpg')
     special_til=models.DateTimeField(null=True , default=timezone.now)
 
     def is_special(self):
