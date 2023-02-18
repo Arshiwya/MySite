@@ -1,0 +1,107 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit | {{user.username}}</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/css/mycss.css' %}">
+<body>
+{% if error %}
+<div class="errors">
+    <span>
+
+        <p>{{error}}</p>
+
+    </span>
+
+</div>
+{% endif %}
+
+<form class="centerr" style="margin-top: 30px ; margin-left: 30px" method="post" enctype="multipart/form-data">
+
+
+
+
+
+
+      <div class="form-row" style="margin-top: 15px">
+
+    <div class="col-4">
+      <label >First Name </label>
+        {{form.first_name|add_class:"form-control"}}
+    </div>
+
+
+    <div class="col-4">
+      <label>Last Name</label>
+        {{form.last_name|add_class:"form-control"}}
+  </div>
+    </div>
+
+
+
+
+       <div class="form-row centerr" >
+
+         <div class="col-4">
+      <label for="email">Email</label>
+              {{form.email|add_class:"form-control"}}
+    </div>
+
+
+      </div>
+
+
+    {% if current %}
+    <a href="{{current.url}}">Current Image</a>
+    {% endif %}
+
+
+       <div class="form-row centerr" >
+                    <div class="col-md-2" style="margin-top: 15px">
+      <label for="image">Image</label>
+              {{form.prof_pic|add_class:"form-control"}}
+    </div>
+
+
+
+
+  </div>
+
+
+          <div class="form-row centerr" >
+                    <div class="col-md-2" style="margin-top: 15px">
+<input type="checkbox" value="ok" checked="no" name="delete_pic">
+<label for="vehicle1">Delete Profile Picture</label><br>
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+{% csrf_token %}
+
+  <button type="submit" class="btn btn-primary" style="margin-top: 30px">Submit</button>
+    <a href="{% url 'website:pics' user.username %}"><button type="button"  class="btn btn-danger" style="margin-top: 30px">Cancel</button></a>
+</form>
+
+</body>
+</html>
+
+
+
+<!--              {{form.first_name|add_class:"form-control"}}-->
+<!--             {{form.last_name|add_class:"form-control"}}-->
+<!--             {{form.email|add_class:"form-control"}}-->
+<!--             {{form.prof_pic|add_class:"form-control"}}-->
+<!--             {{form.delete_prof|add_class:"form-control"}}-->
+
+

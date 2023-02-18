@@ -5,7 +5,7 @@ from .models import Picture
 from accounts.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .forms import CreatePictureForm
+from .forms import CreatePictureForm , EditProfileForm
 from django.utils.text import slugify
 from utiles.cleanfiles import delete_file
 from MySite.settings import BASE_DIR
@@ -160,6 +160,90 @@ def picture_create(request):
 
 
 
+@login_required()
+def edit_profile(request , username):
+    profile = get_object_or_404(User, username=username)
+    initial = {
+        'first_name':profile.first_name,
+        'last_name':profile.last_name,
+        'email':profile.email,
+        'prof_pic':profile.prof_pic,
+    }
 
+
+
+
+
+
+    if request.method =="GET":
+        form = EditProfileForm(instance=request.user)
+        context = {
+            "form": form,
+            "current":profile.prof_pic,
+        }
+
+        return render(request , 'website/update-profile.html' , context=context)
+
+    elif request.method == "POST":
+
+        if 'delete_pic' in request.POST:
+            delete = True
+        else:
+            delete = False
+
+        form = EditProfileForm(initial=initial , data=request.POST , files=request.FILES)
+
+        if request.user == profile:
+
+            if form.is_valid():
+
+                if request.FILES:
+                    profile.prof_pic = request.FILES['prof_pic']
+                    profile.first_name = request.POST['first_name']
+                    profile.last_name = request.POST['last_name']
+                    profile.email = request.POST['email']
+
+
+
+
+
+                    profile.save()
+
+                    return redirect(f'/pics/{request.user.username}')
+
+                if request.POST:
+
+
+                    profile.first_name = request.POST['first_name']
+                    profile.last_name = request.POST['last_name']
+                    profile.email = request.POST['email']
+                    if delete:
+
+                        profile.prof_pic = '../static/img/defult_prof.jpg'
+
+
+
+                    profile.save()
+
+                    return redirect(f'/pics/{request.user.username}')
+
+
+
+
+
+            else:
+                print(form.errors)
+                error = 'Your inputs are not valid . Try again !!!'
+                context = {
+                    "form": form,
+                    'error':error ,
+                }
+                return render(request, 'website/update-profile.html', context=context)
+
+
+
+
+        else:
+            pass
 
 

@@ -1,5 +1,12 @@
 from django.urls import path
-from website.views import home ,user_picture , show_user_picture , picture_detail , delete_pic , picture_create
+from website.views import( home ,
+                           user_picture ,
+                           show_user_picture ,
+                           picture_detail ,
+                           delete_pic ,
+                           picture_create,
+                            edit_profile
+                           )
 app_name = 'website'
 
 urlpatterns = [
@@ -10,6 +17,7 @@ urlpatterns = [
     path('pics/show/single/<slug:slug>/' ,picture_detail , name = 'single_pic' ),
     path('pics/delete/<slug:slug>/' ,  delete_pic  , name = 'pic_delete'),
     path('pic/create/' , picture_create , name = 'pic_create' ),
+    path('profile/update/<slug:username>/' , edit_profile , name = 'edit_prof')
 
 
 

@@ -35,16 +35,21 @@
   <div class=" container">
     <h1 class="display-4">Hello {{user.username}} !
      {% if user.is_special %}
-        <h1>You are special user</h1>
+        <h1>You are special user !!!</h1>
         {% endif %}
-
+            <div class="containerr" style="padding-top: 20px;">
+  <div>
+      <a href="{% url 'website:edit_prof' user.username %}"><button style="border-radius: 30px;" type="button" class="btn btn-warning" >Edit your profile</button></a>
+  </div>
+</div>
     </h1>
   </div>
 </div>
         <div class="col-6 jumbotron jumbotron-fluid"  style="background-color:#ff9696">
-<img src="{{user.prof_pic.url}}" style="border-radius: 50% ;" alt="Avatar">
-</div>
 
+<img src="{{user.prof_pic.url}}" style="border-radius: 10% ;" alt="Avatar">
+
+</div>
 </div>
 
 
@@ -120,7 +125,7 @@
     <h1 class="display-4">You do not have any picture in your album yet .!!!</h1>
   </div>
                         <div class="containerr">
-  <div class="centerr">
+  <div class="mycenter">
       <a href="{% url 'website:pic_create' %}"><button class="button">Add a photo</button></a>
   </div>
 </div>
